@@ -22,7 +22,7 @@ import school.hei.patrimoine.modele.possession.Materiel;
 import school.hei.patrimoine.modele.possession.Possession;
 import school.hei.patrimoine.modele.possession.TransfertArgent;
 
-public class PatrimoineDeTiana implements Supplier<Patrimoine> {
+public class PatrimoineTiana implements Supplier<Patrimoine> {
     private static final LocalDate AU_8_AVRIL_2025 = LocalDate.of(2025, APRIL, 8);
     private static final LocalDate AU_27_JUILLET_2025 = LocalDate.of(2025, JULY, 27);
 
@@ -30,18 +30,18 @@ public class PatrimoineDeTiana implements Supplier<Patrimoine> {
     public Patrimoine get() {
         var Tiana = new Personne("Tiana");
         return Patrimoine.of(
-                "Patrimoine de Tiana", MGA, AU_8_AVRIL_2025, Tiana, possessionsDeTianaAu8Avril2025());
+                "Patrimoine de Tiana", MGA, AU_8_AVRIL_2025, Tiana, possessionTiana());
     }
 
-    private static Set<Possession> possessionsDeTianaAu8Avril2025() {
-        var compteBancaire = new Compte("Compte bancaire unique", AU_8_AVRIL_2025, ariary(60_000_000));
+    private static Set<Possession> possessionTiana() {
+        var compteBancaire = new Compte("Compte courant principal", AU_8_AVRIL_2025, ariary(60_000_000));
 
         var terrain =
-                new Materiel("Terrain bâti", AU_8_AVRIL_2025, AU_8_AVRIL_2025, ariary(100_000_000), 0.10);
+                new Materiel("Propriété construite", AU_8_AVRIL_2025, AU_8_AVRIL_2025, ariary(100_000_000), 0.10);
 
         var depensesMensuelles =
                 new FluxArgent(
-                        "Dépenses mensuelles pour la famille",
+                        "Frais mensuels pour le foyer",
                         compteBancaire,
                         AU_8_AVRIL_2025,
                         LocalDate.MAX,
@@ -50,7 +50,7 @@ public class PatrimoineDeTiana implements Supplier<Patrimoine> {
 
         var depensesProjet =
                 new FluxArgent(
-                        "Dépenses projet entrepreneurial",
+                        "Investissement pour le projet d’entreprise",
                         compteBancaire,
                         LocalDate.of(2025, JUNE, 1),
                         LocalDate.of(2025, DECEMBER, 31),
@@ -59,22 +59,22 @@ public class PatrimoineDeTiana implements Supplier<Patrimoine> {
 
         var revenuProjet10Pourcent =
                 new FluxArgent(
-                        "Avance projet entrepreneurial (10%)",
+                        "Avance de financement projet (10%)",
                         compteBancaire, LocalDate.of(2025, MAY, 1), ariary(7_000_000));
 
         var revenuProjet90Pourcent =
                 new FluxArgent(
-                        "Solde projet entrepreneurial (90%)",
+                        "Versement final projet (90%)",
                         compteBancaire, LocalDate.of(2026, JANUARY, 31), ariary(63_000_000));
 
         var pretBancaire =
-                new FluxArgent("Prêt de la banque", compteBancaire, AU_27_JUILLET_2025, ariary(20_000_000));
+                new FluxArgent("Crédit bancaire reçu", compteBancaire, AU_27_JUILLET_2025, ariary(20_000_000));
 
-        var detteDeTiana = new Dette("Dette issue du prêt", AU_27_JUILLET_2025, ariary(-24_000_000));
+        var detteDeTiana = new Dette("Créance liée au prêt", AU_27_JUILLET_2025, ariary(-24_000_000));
 
         var remboursementDeLaDette =
                 new TransfertArgent(
-                        "Remboursement de la dette",
+                        "Paiement progressif de la dette",
                         compteBancaire,
                         detteDeTiana,
                         LocalDate.of(2025, AUGUST, 27),
