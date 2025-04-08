@@ -1,21 +1,22 @@
 package school.hei.patrimoine.visualisation.swing.ihm;
 
-import static java.awt.EventQueue.invokeLater;
+import school.hei.patrimoine.cas.example.*;
 
 import java.util.List;
-import school.hei.patrimoine.cas.example.EtudiantPireCas;
-import school.hei.patrimoine.cas.example.PatrimoineCresusSupplier;
-import school.hei.patrimoine.cas.example.PatrimoineRicheSupplier;
+
+import static java.awt.EventQueue.invokeLater;
 
 public class VisualiseurCas {
 
-  public static void main(String[] args) {
-    invokeLater(
-        () ->
-            new MainIHM(
-                List.of(
-                    new EtudiantPireCas().patrimoine(),
-                    new PatrimoineRicheSupplier().get(),
-                    new PatrimoineCresusSupplier().get())));
-  }
+    public static void main(String[] args) {
+        invokeLater(
+                () ->
+                        new MainIHM(
+                                List.of(
+                                        new EtudiantPireCas().patrimoine(),
+                                        new PatrimoineRicheSupplier().get(),
+                                        new PatrimoineCresusSupplier().get(),
+                                        new PatrimoineZetyAu3Juillet2024().get(),
+                                        new PatrimoineDeTiana().get())));
+    }
 }
