@@ -17,6 +17,7 @@ public class VisualiseurCas {
                                         new PatrimoineRicheSupplier().get(),
                                         new PatrimoineCresusSupplier().get(),
                                         new PatrimoineZetyAu3Juillet2024().get(),
-                                        new PatrimoineDeTiana().get())));
+                                        new PatrimoineTiana().get(),
+                                        new PatrimoineBako().get())));
     }
 }
